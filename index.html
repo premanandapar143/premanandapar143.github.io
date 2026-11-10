@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Premananda Parida</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: left-aligned single column, hero pairs the intro with a payroll pipeline; sections use a narrow title rail plus a content column. */
+:root {
+  --bg: #f4f6f9;
+  --surface: #ffffff;
+  --fg: #15202b;
+  --muted: #55646f;
+  --line: #d9e0e7;
+  --accent: #2347d8;
+  --accent-soft: #e3e9fc;
+  --on-accent: #ffffff;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e141c;
+    --surface: #151d28;
+    --fg: #e5ebf2;
+    --muted: #9aa8b5;
+    --line: #26323f;
+    --accent: #8aa4ff;
+    --accent-soft: #1c2740;
+    --on-accent: #0e141c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e141c;
+  --surface: #151d28;
+  --fg: #e5ebf2;
+  --muted: #9aa8b5;
+  --line: #26323f;
+  --accent: #8aa4ff;
+  --accent-soft: #1c2740;
+  --on-accent: #0e141c;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+.wrap { max-width: 1040px; margin: 0 auto; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.1; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+/* top bar */
+.bar { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; align-items: center; padding-block: 20px; border-bottom: 1px solid var(--line); }
+.bar strong { font-family: var(--display); font-weight: 700; font-size: 1.05rem; }
+.bar nav { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.bar nav a { color: var(--muted); text-decoration: none; font-size: .95rem; }
+.bar nav a:hover { color: var(--accent); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 48px; padding-block: 64px 56px; align-items: start; }
+.hero h1 { font-size: clamp(2.6rem, 7.2vw, 4.9rem); font-weight: 800; letter-spacing: -0.02em; }
+.hero .role { margin-top: 18px; font-family: var(--display); font-size: clamp(1.15rem, 2.4vw, 1.5rem); font-weight: 500; color: var(--accent); }
+.hero .lede { margin-top: 22px; max-width: 58ch; color: var(--fg); font-size: 1.06rem; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 6px; font: 600 .95rem var(--body); text-decoration: none; cursor: pointer; border: 1px solid var(--accent); }
+.btn.primary { background: var(--accent); color: var(--on-accent); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:hover { filter: brightness(1.08); }
+
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px; }
+.flow h2 { font-size: 1.1rem; font-weight: 700; }
+.flow .sub { margin-top: 6px; color: var(--muted); font-size: .9rem; }
+.steps { margin-top: 20px; position: relative; display: grid; gap: 0; }
+.steps li { position: relative; padding: 0 0 22px 38px; }
+.steps li:last-child { padding-bottom: 0; }
+.steps li::before { content: ""; position: absolute; left: 7px; top: 22px; bottom: -2px; width: 2px; background: var(--line); }
+.steps li:last-child::before { display: none; }
+.steps li::after { content: ""; position: absolute; left: 0; top: 5px; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 3px solid var(--accent); }
+.steps b { display: block; font-weight: 600; }
+.steps span { color: var(--muted); font-size: .92rem; }
+
+/* sections */
+section { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 20px 40px; padding-block: 52px; border-top: 1px solid var(--line); }
+section > h2 { font-size: 1.5rem; font-weight: 700; }
+.body { min-width: 0; display: grid; gap: 28px; }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 22px 28px; margin: 0; }
+.facts dt { color: var(--muted); font-size: .88rem; }
+.facts dd { margin: 2px 0 0; font-weight: 500; }
+
+.job h3 { font-size: 1.3rem; }
+.job .meta { margin-top: 6px; color: var(--muted); }
+.job ul { margin-top: 16px; display: grid; gap: 10px; }
+.job li, .proj li, .cols li { position: relative; padding-left: 18px; }
+.job li::before, .proj li::before, .cols li::before { content: ""; position: absolute; left: 0; top: .72em; width: 7px; height: 2px; background: var(--accent); }
+
+.proj { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 28px; display: grid; gap: 20px; min-width: 0; }
+.proj h3 { font-size: 1.45rem; }
+.proj .tag { color: var(--muted); font-size: .95rem; margin-top: 4px; }
+.proj ul { display: grid; gap: 9px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips li { padding: 4px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--fg); font-size: .9rem; }
+.chips li::before { display: none; }
+.chips li { padding-left: 12px; }
+.label { font-weight: 600; font-size: .95rem; margin-bottom: 8px; }
+
+.stack { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.stack div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding: 10px 16px; border-top: 1px solid var(--line); background: var(--bg); }
+.stack div:first-child { border-top: 0; }
+.stack div b { font-weight: 600; }
+.stack div span { color: var(--muted); font-size: .92rem; }
+
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; }
+.cols ul { display: grid; gap: 9px; }
+
+.skills { display: grid; gap: 18px; }
+.skills .row { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px 20px; align-items: baseline; }
+.skills .row > b { font-weight: 600; }
+.skills .row p { color: var(--fg); }
+
+.contact p.big { font-family: var(--display); font-size: clamp(1.4rem, 3.4vw, 2rem); font-weight: 700; line-height: 1.2; max-width: 22ch; text-wrap: balance; }
+.reach { display: grid; gap: 14px; }
+.reach .line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.reach .line .k { color: var(--muted); width: 64px; }
+.reach .line .v { font-weight: 500; overflow-wrap: anywhere; user-select: all; }
+.copy { min-height: 36px; padding: 0 14px; border-radius: 6px; background: transparent; color: var(--accent); border: 1px solid var(--line); font: 500 .88rem var(--body); cursor: pointer; }
+.copy:hover { border-color: var(--accent); }
+.status { min-height: 1.4em; color: var(--muted); font-size: .9rem; }
+
+footer { padding-top: 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-block: 44px 40px; }
+  section { grid-template-columns: minmax(0, 1fr); gap: 20px; padding-block: 40px; }
+}
+@media (max-width: 520px) {
+  .skills .row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .proj { padding: 20px; }
+  .flow { padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<style>html{color-scheme:light}body{margin:0}</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <strong>Premananda Parida</strong>
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <h1>Premananda Parida</h1>
+        <p class="role">Java full stack developer</p>
+        <p class="lede">I build secure, data-driven web applications with Java, Spring Boot and MySQL. Over 2.5 years I have delivered a multi-module payroll and HRMS platform with biometric attendance, and an online college admission portal, from database design to the browser.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contact">Get in touch</a>
+          <a class="btn ghost" href="#projects">See my projects</a>
+        </div>
+      </div>
+      <aside class="flow" aria-labelledby="flow-title">
+        <h2 id="flow-title">From fingerprint to payslip</h2>
+        <p class="sub">How attendance moves through Payday, the payroll platform I work on.</p>
+        <ul class="steps">
+          <li><b>Biometric punch</b><span>Devices send attendance in real time.</span></li>
+          <li><b>Shift and leave calculation</b><span>Worked hours, shifts and leave are worked out automatically.</span></li>
+          <li><b>Payroll generation</b><span>The attendance result feeds payroll directly.</span></li>
+          <li><b>Reports</b><span>Indexed MySQL queries keep payroll and attendance reports fast.</span></li>
+        </ul>
+      </aside>
+    </div>
+
+    <section id="about">
+      <h2>About</h2>
+      <div class="body">
+        <p>I work across the whole stack: database schema, REST APIs, service layers, role-based access and responsive Bootstrap interfaces. I have worked through the full development cycle in Agile teams, from requirement analysis and coding to debugging, query optimization and release support.</p>
+        <dl class="facts">
+          <div><dt>Experience</dt><dd>2.5 years</dd></div>
+          <div><dt>Based in</dt><dd>Bhubaneswar, Odisha</dd></div>
+          <div><dt>Current role</dt><dd>Full Stack Java Developer at STPL, since March 2024</dd></div>
+          <div><dt>Education</dt><dd>B.Tech in Information Technology, 2022</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="body">
+        <article class="job">
+          <h3>Full Stack Java Developer</h3>
+          <p class="meta">STPL, Bhubaneswar, Odisha. March 2024 to present.</p>
+          <ul>
+            <li>Developed Spring MVC controllers, service layers and Hibernate/JPA repositories, with Thymeleaf views styled in Bootstrap and jQuery/AJAX for dynamic forms.</li>
+            <li>Wrote and optimized MySQL queries using joins and indexing to speed up payroll and attendance reports.</li>
+            <li>Tested REST APIs with Postman, fixed defects and supported releases in an Agile team using Git and JIRA.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="body">
+        <article class="proj">
+          <div>
+            <h3>Payday</h3>
+            <p class="tag">Payroll and HRMS software</p>
+          </div>
+          <p>A multi-module platform for end-to-end workforce management. Attendance from biometric devices flows into payroll, and the modular design lets new modules be added without reworking the core.</p>
+          <div>
+            <p class="label">Modules</p>
+            <ul class="chips">
+              <li>Attendance</li><li>Payroll</li><li>Recruitment</li><li>Appraisal</li><li>Productivity</li>
+              <li>Project management</li><li>Visitor management</li><li>Assets</li><li>Surveys</li><li>Helpdesk</li>
+            </ul>
+          </div>
+          <div>
+            <p class="label">What I built</p>
+            <ul>
+              <li>Integrated biometric devices for real-time attendance capture, with automated shift and leave calculation that feeds payroll generation.</li>
+              <li>Designed the modular architecture so project management, visitor management, assets, surveys and helpdesk sit beside the core modules.</li>
+              <li>Optimized MySQL queries with joins and indexing for faster payroll and attendance reports.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="label">Application layers</p>
+            <div class="stack">
+              <div><b>Views</b><span>Thymeleaf, Bootstrap, jQuery and AJAX</span></div>
+              <div><b>Controllers</b><span>Spring MVC</span></div>
+              <div><b>Services</b><span>Business logic</span></div>
+              <div><b>Repositories</b><span>Hibernate/JPA</span></div>
+              <div><b>Database</b><span>MySQL</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj">
+          <div>
+            <h3>College Admission Portal</h3>
+            <p class="tag">Online admissions, from registration to seat allocation</p>
+          </div>
+          <p>An end-to-end admission system with role-based access that keeps student and administrator functions separate.</p>
+          <div class="cols">
+            <div>
+              <p class="label">For students</p>
+              <ul>
+                <li>Registration and application submission</li>
+                <li>Document upload</li>
+                <li>Application status tracking</li>
+                <li>Admit card and result access</li>
+              </ul>
+            </div>
+            <div>
+              <p class="label">For administrators</p>
+              <ul>
+                <li>Application verification and approval</li>
+                <li>Merit list generation</li>
+                <li>Automated seat allocation</li>
+                <li>Result publishing and student notifications</li>
+                <li>Course and department management</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="body skills">
+        <div class="row"><b>Backend</b><p>Java, Spring Boot, Spring MVC, RESTful APIs, Hibernate/JPA, MVC architecture, role-based access control</p></div>
+        <div class="row"><b>Frontend</b><p>Thymeleaf, HTML5, CSS3, JavaScript, jQuery, AJAX, Bootstrap</p></div>
+        <div class="row"><b>Database</b><p>MySQL: schema design, joins, indexing, query optimization</p></div>
+        <div class="row"><b>Tools</b><p>Git, GitHub, Maven, Postman, JIRA, IntelliJ IDEA, Eclipse, VS Code</p></div>
+        <div class="row"><b>Practices</b><p>Agile/Scrum, debugging, code reviews, API testing</p></div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="body">
+        <div class="job">
+          <h3>B.Tech in Information Technology</h3>
+          <p class="meta">Gandhi Engineering College, Bhubaneswar. Graduated 2022, CGPA 7.50.</p>
+        </div>
+        <div class="job">
+          <h3>Full Stack Development in Java</h3>
+          <p class="meta">Certification, Naresh i Technologies, Hyderabad.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
+      <div class="body">
+        <p class="big">Looking for a Java developer? Let's talk.</p>
+        <div class="reach">
+          <div class="line"><span class="k">Email</span><span class="v" id="email">premanandapar143@gmail.com</span><button class="copy" type="button" data-target="email">Copy email</button></div>
+          <div class="line"><span class="k">Phone</span><span class="v" id="phone">+91 8249714655</span><button class="copy" type="button" data-target="phone">Copy phone</button></div>
+          <div class="line"><span class="k">Location</span><span class="v">Bhubaneswar, Odisha</span></div>
+        </div>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Premananda Parida, Java Full Stack Developer</footer>
+</div>
+
+<script>
+(function () {
+  var status = document.getElementById("status");
+  function selectText(el) {
+    var r = document.createRange();
+    r.selectNodeContents(el);
+    var s = window.getSelection();
+    s.removeAllRanges();
+    s.addRange(r);
+  }
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var el = document.getElementById(btn.getAttribute("data-target"));
+      var text = el.textContent.trim();
+      var done = function () { status.textContent = "Copied " + text; };
+      var fallback = function () { selectText(el); status.textContent = "Selected. Press copy on your keyboard."; };
+      try {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } catch (e) { fallback(); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
